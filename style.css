@@ -1,0 +1,431 @@
+/* --- General Styles --- */
+:root {
+    --primary-color: #0056b3;
+    --secondary-color: #007bff;
+    --accent-color: #dc3545;
+    --text-color: #333;
+    --bg-color: #f8f9fa;
+    --card-bg: #ffffff;
+    --footer-bg: #343a40;
+}
+
+body {
+    font-family: 'Kanit', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+main {
+    flex-grow: 1;
+}
+
+/* --- Header & Navigation --- */
+.header {
+    background-color: var(--card-bg);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    padding: 1rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--primary-color);
+    text-decoration: none;
+}
+
+/* ======= Navbar: ใช้ flex + gap แทน margin-left ======= */
+
+/* ให้ navbar เป็น flex container ใช้ gap สำหรับช่องว่างระหว่างไอเท็ม */
+.navbar {
+  display: flex;
+  align-items: center;
+  gap: 25px;           /* ช่องว่างเท่ากันระหว่างเมนูทุกตัว */
+  padding: 0;          /* ปรับค่าเริ่มต้นถ้ามี */
+  margin: 0;           /* ปรับค่าเริ่มต้นถ้ามี */
+}
+
+/* ให้แต่ละลิงก์เป็น inline-flex เพื่อควบคุม padding/vertical-align */
+.navbar a {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 8px;    /* ระยะขอบในลิงก์ ทำให้ clickable area เท่ากัน */
+  color: var(--text-color);
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.25s, background-color 0.12s;
+ 
+  line-height: 1;      /* ปรับให้แนวตั้งตรง */
+  white-space: nowrap; /* ป้องกันข้อความ wrap ลงบรรทัดใหม่ */
+}
+
+/* สไตล์เมื่อ hover / active */
+.navbar a:hover,
+.navbar a.active {
+  color: var(--primary-color);
+  background: rgba(0,0,0,0.03); /* เล็กน้อยเพื่อให้เห็นชัดว่าเป็นรายการที่เลือก/hover */
+  border-radius: 8px;
+}
+
+/* ถ้าต้องการให้ "หน้าแรก" (active) หนา/สีเด่น ให้กำหนดชัด */
+.navbar a.active {
+  font-weight: 700;
+  color: var(--primary-color);
+}
+
+/* ======= Responsive tweak: ให้เมนูกลางและมี gap บนมือถือด้วย ======= */
+@media (max-width: 768px) {
+  .navbar {
+    justify-content: center; /* จัดเมนูกลางบนมือถือ (ถ้าเป็นแนวนอน) */
+    gap: 18px;                /* ลดช่องว่างเพื่อให้พอดีกับหน้าจอเล็ก */
+    flex-wrap: wrap;         /* ถ้าลิงก์เยอะ ให้ห่อขึ้นบรรทัดถัดไป */
+  }
+
+  .navbar a {
+    padding: 10px 12px;      /* เพิ่มพื้นที่แตะบนมือถือ */
+  }
+}
+
+
+/* --- General Page Content --- */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 40px 5px;
+}
+
+.section-title {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 2.5rem;
+    color: var(--primary-color);
+}
+
+/* --- Hero Section --- */
+
+   
+
+  
+
+.hero h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    max-width: 300px;
+    margin: 0 auto;
+}
+
+
+/* --- Service Introduction Section (services.html) --- */
+.service-intro {
+    display: grid;
+    grid-template-columns: 1fr 1.2fr;
+    gap: 50px;
+    align-items: center;
+    margin-bottom: 60px;
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
+
+.service-intro-image img {
+    width: 100%;
+    border-radius: 12px;
+    display: block;
+}
+
+.service-intro-text h3 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-top: 0;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.service-intro-text p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+
+
+/* --- Campaign & Slider Styles --- */
+.campaign-section {
+    margin-bottom: 60px;
+}
+.campaign-section h3 {
+    font-size: 1.8rem;
+    color: var(--text-color);
+    margin-bottom: 20px;
+    padding-left: 10px;
+    border-left: 4px solid var(--primary-color);
+}
+.campaign-slider {
+    position: relative;
+    padding: 0 5px;
+}
+
+/* --- Swiper Slide & Service Card --- */
+.swiper-slide {
+    height: auto;
+    padding-bottom: 15px;
+}
+.service-card {
+    background-color: var(--card-bg);
+    border-radius: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    overflow: hidden;
+    text-align: center;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.service-card img 
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    .service-card img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+}
+.service-card-content {
+    padding: 20px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.service-card-content h4 {
+    margin-top: 0;
+    color: var(--primary-color);
+    font-size: 1.4rem;
+    margin-bottom: 10px;
+}
+.service-card .price {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--accent-color);
+    margin: 5px 0 10px 0;
+}
+.service-card .price span {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #6c757d;
+}
+.service-card p {
+    flex-grow: 1;
+    color: #6c757d;
+    font-size: 0.9rem;
+}
+
+.contact-buttons {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+}
+.service-card .contact-buttons .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border-radius: 50%;
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: opacity 0.2s;
+}
+.contact-buttons .btn:hover { opacity: 0.85; }
+.btn-line { background-color: #06C755; }
+.btn-facebook { background-color: #1877F2; }
+.btn-phone { background-color: #6c757d; }
+
+/* --- Swiper Navigation Buttons --- */
+.swiper-button-next, .swiper-button-prev {
+    color: var(--primary-color);
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 50%;
+    width: 44px;
+    height: 44px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+}
+.swiper-button-next:after, .swiper-button-prev:after {
+    font-size: 18px;
+    font-weight: 700;
+}
+.swiper-button-disabled {
+    opacity: 0.35;
+    cursor: auto;
+    pointer-events: none;
+}
+
+/* --- ADV Section Styles --- */
+.adv-section {
+    background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border-radius: 16px;
+    padding: 40px;
+    margin: 60px 0;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 86, 179, 0.3);
+}
+.adv-content h3 {
+    font-size: 2rem;
+    margin-top: 0;
+    margin-bottom: 15px;
+}
+.adv-content p {
+    font-size: 1.1rem;
+    max-width: 600px;
+   
+    margin-right: auto;
+    margin-bottom: 30px;
+    color: white;
+}
+.btn-adv {
+    background-color: rgb(0, 208, 255);
+    color: var(--primary-color);
+    padding: 12px 30px;
+    border-radius: 50px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 1.1rem;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: inline-block;
+}
+.btn-adv:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+}
+
+/* --- Styles for Area & Contact Pages --- */
+.info-section {
+    background-color: var(--card-bg);
+    padding: 40px;
+    border-radius: 16px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+.info-section .contact-buttons .btn {
+    width: auto;
+    height: auto;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-size: 1.1rem;
+    color: white; /* <<<<<<<<<<<<< เพิ่มบรรทัดนี้เข้ามา */
+    text-decoration: none; /* <<<<<< เพิ่มเพื่อความแน่นอน */
+}
+.info-section .contact-buttons .btn i {
+    margin-right: 8px;
+}
+
+.contact-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: center;
+}
+.company-info {
+    background-color: var(--card-bg);
+    padding: 30px;
+    border-radius: 16px;
+}
+.company-info p {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 1.1rem;
+    color: var(--text-color);
+}
+.company-info p i {
+    color: var(--primary-color);
+}
+.large-contact-buttons .btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 15px;
+    font-size: 1.2rem;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    text-decoration: none;
+    color: white;
+}
+.large-contact-buttons .btn i {
+    margin-right: 15px;
+}
+
+/* --- Footer --- */
+.footer {
+    background-color: var(--footer-bg);
+    color: #adb5bd; /* ปรับสีตัวอักษรให้อ่อนลงเล็กน้อย */
+    padding: 40px 0;
+    margin-top: auto; /* ดัน Footer ลงล่างสุดเสมอ */
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap; /* ทำให้ขึ้นบรรทัดใหม่บนจอมือถือ */
+    gap: 30px;
+}
+
+.footer-contact,
+.footer-about {
+    flex: 1;
+    min-width: 280px; /* กำหนดความกว้างขั้นต่ำ */
+}
+
+.footer h4 {
+    color: white;
+    font-size: 1.2rem;
+    margin-top: 0;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #495057;
+}
+
+.footer p {
+    margin: 0 0 10px;
+    font-size: 0.95rem;
+}
+
+.footer a {
+    color: #adb5bd;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.footer a:hover {
+    color: white;
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 40px;
+    padding-top: 20px;
+    /* border-top: 1px solid #495057;  <-- ลบบรรทัดนี้ออก */
+    font-size: 0.9rem;
+    color: #6c757d;
+}
